@@ -2,7 +2,6 @@
   'use strict';
 
   angular.module('app', [
-    'app.templates',
     'app.core',
 
     // features area

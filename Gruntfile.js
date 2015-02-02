@@ -7,6 +7,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   /**
    * Load in our build configuration file.
@@ -54,19 +55,22 @@ module.exports = function (grunt) {
      */
     concat: {
       /**
-       * The `build_vendor_css` concatenates vendor CSS together.
+       * The `vendor_css` concatenates vendor CSS together.
        */
-      build_vendor_css: {
+      vendor_css: {
         src: [
           '<%= vendor_files.css %>'
         ],
         dest: '<%= build_dir %>/css/app.vendor.css'
       },
       /**
-       * The `build_vendor_js` target is the concatenation of
+       * The `vendor_js` target is the concatenation of
        * all specified vendor source code into a single file.
        */
-      build_vendor_js: {
+      vendor_js: {
+        options: {
+          sourceMap: true
+        },
         src: [
           '<%= vendor_files.js %>'
         ],
@@ -77,9 +81,9 @@ module.exports = function (grunt) {
      * `grunt compass` compiles scss/sass files into css.
      */
     compass: {
-      build_css: {
+      app: {
         options: {
-          sassDir: 'src/scss',
+          sassDir: '<%= app_files.scss_dir %>',
           cssDir: '<%= build_dir %>/css'
         }
       }
@@ -88,14 +92,14 @@ module.exports = function (grunt) {
      * `grunt cssmin` minifies content of css files.
      */
     cssmin: {
-      /**
-       * `build` target minifies and rewrites already compiled
-       * app and vendor css files
-       */
-      build: {
+      vendor: {
         files: {
-          '<%= build_dir %>/css/app.css': '<%= build_dir %>/css/app.css',
           '<%= build_dir %>/css/app.vendor.css': '<%= build_dir %>/css/app.vendor.css'
+        }
+      },
+      app: {
+        files: {
+          '<%= build_dir %>/css/app.css': '<%= build_dir %>/css/app.css'
         }
       }
     },
@@ -119,7 +123,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       app: {
         options: {
-          module: 'app.templates',
+          module: 'app',
           htmlmin: {
             collapseBooleanAttributes: true,
             collapseWhitespace: true
@@ -128,12 +132,46 @@ module.exports = function (grunt) {
         src: '<%= app_files.html %>',
         dest: '<%= build_dir %>/js/app.templates.js'
       }
+    },
+    /**
+     * `grunt watch` executes task on source files changes
+     */
+    watch: {
+      config: {
+        files: ['Gruntfile.js', '<%= config_file %>'],
+        tasks: ['build'],
+        options: {
+          reload: true
+        }
+      },
+      scss: {
+        files: ['<%= app_files.scss_dir %>/**/*.scss'],
+        tasks: ['css']
+      },
+      js: {
+        files: ['<%= app_files.js %>'],
+        tasks: ['uglify:app']
+      },
+      templates: {
+        files: ['<%= app_files.html %>'],
+        tasks: ['ngtemplates:app']
+      },
+      indexHtml: {
+        files: ['<%= app_files.indexHtml %>'],
+        tasks: ['copy:indexHtml']
+      },
+      assets: {
+        files: ['<%= app_files.assets_dir %>/**/*.*'],
+        tasks: ['copy:assets']
+      }
     }
 
   };
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
   // Tasks
-  grunt.registerTask('default', ['copy', 'concat', 'compass', 'cssmin', 'uglify', 'ngtemplates']);
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('css', ['compass:app', 'cssmin:app']);
+  grunt.registerTask('build', ['copy', 'concat', 'compass', 'cssmin', 'uglify', 'ngtemplates']);
 
 };

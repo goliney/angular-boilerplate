@@ -1,33 +1,28 @@
-(function() {
+(function () {
   'use strict';
 
   angular
-    .module('app.core')
+    .module('app')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$log'];
+  dataservice.$inject = ['$q','$http', '$resource', '$log'];
 
-  function dataservice($http, $log) {
+  function dataservice($q, $http, $resource, $log) {
+    var projectResource = $resource('/api/', {}, {
+      getSomething: {
+        method: 'GET',
+        url: 'something/:projectId'
+      }
+    });
+
     var service = {
       getSomething: getSomething
     };
 
     return service;
-    /////////////////
 
-    function getSomething() {
-      return $http.get('/api/something')
-        .then(getSomethingComplete)
-        .catch(getSomethingFailed);
-
-      function getSomethingComplete(response) {
-        return response.data.results;
-      }
-
-      function getSomethingFailed(error) {
-        $log.error('XHR Failed for getSomething.' + error.data);
-      }
+    function getSomething(id) {
+      return projectResource.getSomething({projectId: id}).$promise;
     }
   }
-
 })();

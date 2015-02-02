@@ -9,12 +9,14 @@ module.exports = {
    */
   build_dir: 'build',
   compile_dir: 'bin',
+  config_file: 'config.js',
 
   app_files: {
     js: [
       'src/app/**/*.module.js',
       'src/app/**/*.js'
     ],
+    scss_dir: 'src/scss/',
     assets_dir: 'src/assets/',
     html: 'src/app/**/*.html',
     indexHtml: 'src/index.html'
