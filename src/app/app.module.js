@@ -2,9 +2,11 @@
   'use strict';
 
   angular.module('app', [
-    'app.tpls',
+    'app.templates',
     'app.core',
-    'app.project'
+
+    // features area
+    'app.home-page'
   ]);
 
 })();

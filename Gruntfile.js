@@ -26,11 +26,27 @@ module.exports = function (grunt) {
      * pairs are evaluated based on this very configuration object.
      */
     meta: {
-      banner:
-      '/**\n' +
+      banner: '/**\n' +
       ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '/* <%= pkg.description %>\n'  +
+      '/* <%= pkg.description %>\n' +
       ' */\n'
+    },
+
+    /**
+     * The `copy` task just copies files from A to B. We use it here to copy
+     * our project assets (images, fonts, etc.) into `build_dir`
+     */
+    copy: {
+      indexHtml: {
+        src: '<%= app_files.indexHtml %>',
+        dest: '<%= build_dir %>/index.html'
+      },
+      assets: {
+        expand: true,
+        cwd: '<%= app_files.assets_dir %>',
+        src: '**',
+        dest: '<%= build_dir %>/assets/'
+      }
     },
 
     /**
@@ -84,14 +100,33 @@ module.exports = function (grunt) {
       }
     },
     /**
-     * `grunt uglify` minifies js sources.
+     * `grunt uglify` concatenates and minifies app js sources.
      */
     uglify: {
-      options: {
-        banner: '<%= meta.banner %>'
-      },
-      files: {
-        '<%= build_dir %>/js/app.js': '<%= build_dir %>/js/app.js'
+      app: {
+        options: {
+          banner: '<%= meta.banner %>',
+          sourceMap: true
+        },
+        files: {
+          '<%= build_dir %>/js/app.js': ['<%= app_files.js %>']
+        }
+      }
+    },
+    /**
+     * `grunt ngtemplates` automatically caches minified HTML templates with $templateCache.
+     */
+    ngtemplates: {
+      app: {
+        options: {
+          module: 'app.templates',
+          htmlmin: {
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true
+          }
+        },
+        src: '<%= app_files.html %>',
+        dest: '<%= build_dir %>/js/app.templates.js'
       }
     }
 
@@ -99,6 +134,6 @@ module.exports = function (grunt) {
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
   // Tasks
-  grunt.registerTask('default', ['concat', 'compass', 'cssmin']);
+  grunt.registerTask('default', ['copy', 'concat', 'compass', 'cssmin', 'uglify', 'ngtemplates']);
 
 };

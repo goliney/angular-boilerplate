@@ -11,14 +11,13 @@ module.exports = {
   compile_dir: 'bin',
 
   app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
-    jsunit: [ 'src/**/*.spec.js' ],
-
-    atpl: [ 'src/app/**/*.tpl.html' ],
-    ctpl: [ 'src/common/**/*.tpl.html' ],
-
-    html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
+    js: [
+      'src/app/**/*.module.js',
+      'src/app/**/*.js'
+    ],
+    assets_dir: 'src/assets/',
+    html: 'src/app/**/*.html',
+    indexHtml: 'src/index.html'
   },
 
   /**
@@ -41,11 +40,13 @@ module.exports = {
    */
   vendor_files: {
     js: [
-      "bower_components/jquery/dist/jquery.min.js",
-      "bower_components/lodash/lodash.min.js",
-      "bower_components/angular/angular.min.js",
-      "bower_components/angular-ui-router/release/angular-ui-router.min.js",
-      "bower_components/angular-resource/angular-resource.min.js"
+      'bower_components/jquery/dist/jquery.min.js',
+      'bower_components/lodash/lodash.min.js',
+      'bower_components/angular/angular.min.js',
+      'bower_components/angular-resource/angular-resource.min.js',
+      'bower_components/angular-sanitize/angular-sanitize.min.js',
+      'bower_components/angular-animate/angular-animate.min.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.min.js'
     ],
     css: [],
     assets: []
