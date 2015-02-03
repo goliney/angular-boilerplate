@@ -58,9 +58,7 @@ module.exports = function (grunt) {
        * The `vendor_css` concatenates vendor CSS together.
        */
       vendor_css: {
-        src: [
-          '<%= vendor_files.css %>'
-        ],
+        src: ['<%= vendor_files.css %>'],
         dest: '<%= build_dir %>/css/app.vendor.css'
       },
       /**
@@ -71,9 +69,7 @@ module.exports = function (grunt) {
         options: {
           sourceMap: true
         },
-        src: [
-          '<%= vendor_files.js %>'
-        ],
+        src: ['<%= vendor_files.js %>'],
         dest: '<%= build_dir %>/js/app.vendor.js'
       }
     },

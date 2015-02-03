@@ -8,7 +8,7 @@
   dataservice.$inject = ['$q','$http', '$resource', '$log'];
 
   function dataservice($q, $http, $resource, $log) {
-    var projectResource = $resource('/api/', {}, {
+    var projectResource = $resource('', {}, {
       getSomething: {
         method: 'GET',
         url: '/api/something/:projectId'
