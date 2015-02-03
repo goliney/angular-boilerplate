@@ -11,7 +11,7 @@
     var projectResource = $resource('/api/', {}, {
       getSomething: {
         method: 'GET',
-        url: 'something/:projectId'
+        url: '/api/something/:projectId'
       }
     });
 

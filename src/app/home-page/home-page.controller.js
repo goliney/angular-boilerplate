@@ -8,13 +8,15 @@
   HomePage.$inject = ['$log', 'dataservice', '_'];
 
   function HomePage($log, dataservice, _) {
+    console.log('home page controller init');
     var vm = this;
-    vm.title = _.trim('__Home page__');   // example of vendor library usage
+    vm.title = 'Home page';
 
     activate();
 
     function activate() {
-      dataservice.getSomething()
+      var randomId = _.random(10);        // example of vendor library usage
+      dataservice.getSomething(randomId)
         .then(function() {
           $log.info('Call will throw an error with 100% probability and you won\'t see this message');
         })

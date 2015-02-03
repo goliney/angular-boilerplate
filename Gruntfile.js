@@ -123,7 +123,8 @@ module.exports = function (grunt) {
     ngtemplates: {
       app: {
         options: {
-          module: 'app',
+          module: 'app.templates',
+          standalone: true,
           htmlmin: {
             collapseBooleanAttributes: true,
             collapseWhitespace: true
@@ -165,7 +166,6 @@ module.exports = function (grunt) {
         tasks: ['copy:assets']
       }
     }
-
   };
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 

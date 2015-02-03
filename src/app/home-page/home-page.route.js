@@ -14,9 +14,9 @@
 
   function appConfig($stateProvider) {
     $stateProvider
-      .state('app.home-page', {
+      .state('app', {
         url: '',
-        templateUrl: '/home-page.html',
+        templateUrl: 'src/app/home-page/home-page.html',
         controller: 'HomePageController',
         controllerAs: 'vm'
       });

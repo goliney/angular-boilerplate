@@ -13,9 +13,10 @@ module.exports = {
 
   app_files: {
     js: [
-      'src/app/**/*.module.js',
+      'src/app/**/*.module.js',   //modules first
       'src/app/**/*.js'
     ],
+    app_dir: 'src/app/',
     scss_dir: 'src/scss/',
     assets_dir: 'src/assets/',
     html: 'src/app/**/*.html',
