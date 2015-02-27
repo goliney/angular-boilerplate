@@ -14,11 +14,15 @@
 
   function appConfig($stateProvider) {
     $stateProvider
-      .state('app', {
-        url: '',
-        templateUrl: 'src/app/home-page/home-page.html',
-        controller: 'HomePageController',
-        controllerAs: 'vm'
+      .state('app.home', {
+        url: '/',
+        views: {
+          'main@' : {
+            templateUrl: 'src/app/home-page/home-page.html',
+            controller: 'HomePageController',
+            controllerAs: 'vm'
+          }
+        }
       });
   }
 })();
