@@ -2,11 +2,14 @@
   'use strict';
 
   angular.module('app', [
-    'app.templates',
+    'templates-app',
+    'templates-common',
     'app.core',
 
     // features area
-    'app.home-page'
+    'app.home-page',
+    'app.auth',
+    'app.users'
   ]);
 
 })();

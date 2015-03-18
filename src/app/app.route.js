@@ -5,15 +5,23 @@
     .module('app.home-page')
     .config(appConfig);
 
-  appConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
+  appConfig.$inject = ['$locationProvider', '$urlRouterProvider', '$stateProvider'];
 
-  function appConfig($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/');
+  function appConfig($locationProvider, $urlRouterProvider, $stateProvider) {
+    debugger;
+    $locationProvider
+      .html5Mode({
+        enabled: true,
+        requireBase: false
+      });
 
     $stateProvider
       .state('app', {
         url: '',
         abstract: true
       });
+
+    $urlRouterProvider.otherwise('/');
+
   }
 })();

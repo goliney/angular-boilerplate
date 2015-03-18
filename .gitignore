@@ -1,8 +1,11 @@
+*.sw*
+*~
+build/
+bin/
+node_modules/
+vendor/
+npm-debug.log
+
 .idea/
 .DS_Store
 .sass-cache/
-bower_components/
-node_modules/
-npm-debug.log
-
-build/

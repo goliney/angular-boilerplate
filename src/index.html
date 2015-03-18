@@ -2,16 +2,17 @@
 <html ng-app="app" ng-strict-di>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Angular app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="./css/app.vendor.css">
-    <link rel="stylesheet" href="./css/app.css">
+    <title ng-bind="pageTitle">Angular app</title>
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 </head>
 <body>
     <div ui-view="main"></div>
 
-    <script src="./js/app.vendor.js"></script>
-    <script src="./js/app.js"></script>
-    <script src="./js/app.templates.js"></script>
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
 </body>
 </html>

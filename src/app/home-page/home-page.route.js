@@ -7,11 +7,6 @@
 
   appConfig.$inject = ['$stateProvider'];
 
-  /**
-    Info about routing, nested states and more:
-    https://github.com/angular-ui/ui-router
-   */
-
   function appConfig($stateProvider) {
     $stateProvider
       .state('app.home', {
