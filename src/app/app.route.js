@@ -8,7 +8,6 @@
   appConfig.$inject = ['$locationProvider', '$urlRouterProvider', '$stateProvider'];
 
   function appConfig($locationProvider, $urlRouterProvider, $stateProvider) {
-    debugger;
     $locationProvider
       .html5Mode({
         enabled: true,
