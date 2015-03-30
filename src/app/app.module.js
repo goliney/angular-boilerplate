@@ -7,9 +7,9 @@
     'app.core',
 
     // features area
-    'app.home-page',
     'app.auth',
-    'app.users'
+    'app.user',
+    'app.home-page'
   ]);
 
 })();

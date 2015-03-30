@@ -3,6 +3,10 @@
  */
 module.exports = {
   /**
+   * The `static_url` is an URL to use when referring to static files
+   */
+  static_url: '',
+  /**
    * The `build_dir` folder is where our projects are compiled during
    * development and the `compile_dir` folder is where our app resides once it's
    * completely built.
@@ -20,7 +24,12 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
+    js: [
+      'src/**/*.js',
+      '!src/**/_*.js',          // exclude files with filename starting with _ for debug purposes
+      '!src/**/*.spec.js',      // exclude tests
+      '!src/assets/**/*.js'     // exclude assets
+    ],
     jsunit: [ 'src/**/*.spec.js' ],
 
     atpl: [ 'src/app/**/*.tpl.html' ],
@@ -65,7 +74,8 @@ module.exports = {
       'vendor/angular-resource/angular-resource.min.js',
       'vendor/angular-sanitize/angular-sanitize.min.js',
       'vendor/angular-animate/angular-animate.min.js',
-      'vendor/angular-ui-router/release/angular-ui-router.min.js'
+      'vendor/angular-ui-router/release/angular-ui-router.min.js',
+      'vendor/angular-local-storage/dist/angular-local-storage.min.js'
     ],
     css: [
     ],

@@ -188,6 +188,8 @@ module.exports = function ( grunt ) {
         src: [ 
           '<%= vendor_files.js %>',
           'module.prefix',
+          '<%= build_dir %>/src/**/*.module.js',
+          '<%= build_dir %>/src/**/*.route.js',
           '<%= build_dir %>/src/**/*.js',
           '<%= html2js.app.dest %>',
           '<%= html2js.common.dest %>',
@@ -279,6 +281,7 @@ module.exports = function ( grunt ) {
         sub: true,
         boss: true,
         eqnull: true,
+        es5: true,
         debug: true     // enable 'debugger;' in code
       },
       globals: {}
@@ -558,7 +561,8 @@ module.exports = function ( grunt ) {
           data: {
             scripts: jsFiles,
             styles: cssFiles,
-            version: grunt.config( 'pkg.version' )
+            version: grunt.config( 'pkg.version' ),
+            static_url: grunt.config( 'static_url' )
           }
         });
       }

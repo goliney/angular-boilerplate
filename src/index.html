@@ -7,12 +7,12 @@
     <title ng-bind="pageTitle">Angular app</title>
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+    <link rel="stylesheet" type="text/css" href="<%= static_url %><%= file %>" /><% }); %>
 </head>
 <body>
-    <div ui-view="main"></div>
+    <div ng-cloak ui-view="main"></div>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+    <script type="text/javascript" src="<%= static_url %><%= file %>"></script><% }); %>
 </body>
 </html>

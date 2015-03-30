@@ -2,19 +2,19 @@
   'use strict';
 
   angular
-    .module('app.home-page')
+    .module('app.auth')
     .config(appConfig);
 
   appConfig.$inject = ['$stateProvider'];
 
   function appConfig($stateProvider) {
     $stateProvider
-      .state('app.home', {
-        url: '/',
+      .state('public.signin', {
+        url: '/signin',
         views: {
           'main@' : {
-            templateUrl: 'home-page/home-page.tpl.html',
-            controller: 'HomePageController',
+            templateUrl: 'auth/signin/signin.tpl.html',
+            controller: 'AuthSigninController',
             controllerAs: 'vm'
           }
         }

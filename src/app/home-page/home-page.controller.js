@@ -5,9 +5,9 @@
     .module('app.home-page')
     .controller('HomePageController', HomePage);
 
-  HomePage.$inject = ['$log', 'dataservice', '_'];
+  HomePage.$inject = ['_'];
 
-  function HomePage($log, dataservice, _) {
+  function HomePage(_) {
     var vm = this;
     vm.title = 'Home page';
 
@@ -15,10 +15,6 @@
 
     function activate() {
       var randomId = _.random(10);        // example of vendor library usage
-      //dataservice.getSomething(randomId)
-      //  .then(function () {
-      //    $log.info('Call will throw an error with 100% probability');
-      //  });
     }
   }
 })();
