@@ -25,6 +25,10 @@
         return request;
       }
 
+      if ($templateCache.get(request.url) !== undefined) {
+        return request;
+      }
+
       request.headers = request.headers || {};
 
       // Already has an Authorization header
