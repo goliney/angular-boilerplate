@@ -1,0 +1,13 @@
+<div>
+    Sign in
+    <hr/>
+    <form method="post" ng-submit="vm.signIn()">
+        <label>Name: <input type="text" name="name" ng-model="vm.login.username" /></label>
+        <label>Password: <input type="password" name="pass" ng-model="vm.login.password" /></label>
+        <button>Sign in</button>
+    </form>
+    <hr/>
+    <a ui-sref="app.home">Home page</a>
+    <hr/>
+    <a ui-sref="app.articles">Articles</a>
+</div>
