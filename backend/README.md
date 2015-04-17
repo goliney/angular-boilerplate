@@ -64,7 +64,7 @@ Server start
 After requirements installation server is ready to start:
 
 ```
-python backend.py
+python server.py
 ```
 
 You will see a message on the server startup. Now you can see `angular-boilerplate` client application at

@@ -8,7 +8,7 @@ from flask import make_response, request, current_app, jsonify
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend')
-STATIC_DIR = os.path.join(FRONTEND_DIR, 'bin')        # set 'bin` instead of 'build' to serve production files
+STATIC_DIR = os.path.join(FRONTEND_DIR, 'build')        # set 'bin` instead of 'build' to serve production files
 
 # create our little application :)
 app = Flask(__name__, static_url_path='/static', static_folder=STATIC_DIR, template_folder=STATIC_DIR)
