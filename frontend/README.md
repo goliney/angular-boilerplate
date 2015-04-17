@@ -5,8 +5,8 @@ Inspired by:
  * https://github.com/ngbp/ngbp
  * https://github.com/johnpapa/angularjs-styleguide
 
-Installation
-------------
+Install
+-------
 
 All of the following commands have to be executed from `frontend` folder.
 
@@ -67,8 +67,8 @@ It`s a shortcut for `grunt build` and `grunt compile`. Two folders will appear:
 1. `build` - version for development. All sources are not minified and not concatenated. Easy to debug
 2. `bin` - version for deploy. Optimised for production
 
-Development
------------
+Develop
+-------
 
 All sources are located at [src](src/). Files at `build` and `bin` folders are generated automatically and should not be
 edited directly.

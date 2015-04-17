@@ -4,7 +4,7 @@ Boilerplate project for angularjs/bower/grunt
 Documentation:
 
 1. [Client side (main)](frontend/)
-2. [Backend side (for development)](backend/)
+2. [Simple backend side (for development)](backend/)
 
 Inspired by:
  * https://github.com/ngbp/ngbp
