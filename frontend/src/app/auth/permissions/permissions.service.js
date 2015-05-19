@@ -5,9 +5,9 @@
     .module('app.auth')
     .factory('Permissions', Permissions);
 
-  Permissions.$inject = ['$rootScope', '$state', 'AuthService', '_'];
+  Permissions.$inject = ['$rootScope', 'AuthService', '_'];
 
-  function Permissions($rootScope, $state, AuthService, _) {
+  function Permissions($rootScope, AuthService, _) {
     var user;
     var service = {
       hasAccessToState: hasAccessToState,
@@ -32,16 +32,22 @@
 
     /**
      * Check if the user has permission
-     * If current user is not resolved - access allowed
      */
     function hasPermission(permissions) {
       var currentUser = getCurrentUser();
 
+      // If current user will not be resolved - access denied
+      if (!currentUser) {
+        return false;
+      }
+
+      // If current user is not resolved yet - access allowed
+      // (used in stateChange case)
       if (!currentUser.$resolved) {
         return true;
       }
 
-      if (!currentUser.permissions || !permissions) {
+      if (!currentUser.permissions) {
         return false;
       }
 
@@ -61,20 +67,22 @@
     function getCurrentUser() {
       if (!user) {
         user = AuthService.getCurrentUser();
-        user.$promise.then(function(userObject) {
-          // check access to current state
-          // we cannot user $scope.$current as it is empty on page refresh
-          if (!hasAccessToState($rootScope.toState)) {
-            accessDeniedHandler();
-          }
-          return userObject;
-        });
+        if (user) {
+          user.$promise.then(function(userObject) {
+            // check access to current state
+            // we cannot use $scope.$current as it is empty on page refresh
+            if (!hasAccessToState($rootScope.toState)) {
+              accessDeniedHandler();
+            }
+            return userObject;
+          });
+        }
       }
       return user;
     }
 
     function accessDeniedHandler() {
-      $state.go('public.signin');
+      AuthService.redirectToSignin($rootScope.toState, $rootScope.toStateParams);
     }
   }
 })();

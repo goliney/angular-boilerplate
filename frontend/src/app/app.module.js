@@ -9,6 +9,7 @@
     // features area
     'app.auth',
     'app.user',
+    'app.navbar',
     'app.article',
     'app.home-page'
   ]);

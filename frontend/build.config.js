@@ -78,6 +78,8 @@ module.exports = {
       'vendor/angular-local-storage/dist/angular-local-storage.min.js'
     ],
     css: [
+      'vendor/skeleton/css/normalize.css',
+      'vendor/skeleton/css/skeleton.css'
     ],
     assets: [
     ]

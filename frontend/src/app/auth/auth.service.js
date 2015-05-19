@@ -9,6 +9,8 @@
 
   function AuthService($q, $state, $http, API_ROOT, storage, User) {
     var user;
+    var returnToState;
+    var returnToStateParams;
     var service = {
       login: login,
       logout: logout,
@@ -16,6 +18,7 @@
       removeToken: removeToken,
       isTokenExpired: isTokenExpired,
       redirectToSignin: redirectToSignin,
+      redirectFromSignin: redirectFromSignin,
       getCurrentUser: getCurrentUser
     };
 
@@ -39,6 +42,7 @@
     }
 
     function logout() {
+      user = null;
       removeToken();
       redirectToSignin();
     }
@@ -57,8 +61,23 @@
       storage.remove('token');
     }
 
-    function redirectToSignin() {
+    function redirectToSignin(fromState, fromStateParams) {
+      returnToState = fromState;
+      returnToStateParams = fromStateParams;
       $state.go('public.signin');
+    }
+
+    /**
+     * Redirect to stored state after successful sign in
+     */
+    function redirectFromSignin() {
+      if (returnToState != null && returnToStateParams != null) {
+        $state.go(returnToState, returnToStateParams);
+        returnToState = null;
+        returnToStateParams = null;
+      } else {
+        $state.go('app.home');
+      }
     }
 
     function isTokenExpired(token) {
@@ -68,7 +87,8 @@
     }
 
     function getCurrentUser() {
-      if (!user) {
+      var token = getToken();
+      if (!user && token) {
         user = User.getCurrent();
       }
       return user;

@@ -8,13 +8,13 @@
   authRun.$inject = ['$rootScope', '_', '$state', 'AuthService'];
 
   function authRun ($rootScope, _, $state, AuthService) {
-    $rootScope.$on('$stateChangeStart', function (e, to) {
+    $rootScope.$on('$stateChangeStart', function (e, toState, toStateParams) {
       // check auth token availability on every route change
       // do not check if route state is public
-      if (_.startsWith(to.name, 'public') === false) {
+      if (_.startsWith(toState.name, 'public') === false) {
         if (!AuthService.getToken()) {
           e.preventDefault();
-          $state.go('public.signin');
+          AuthService.redirectToSignin(toState, toStateParams);
         }
       }
     });

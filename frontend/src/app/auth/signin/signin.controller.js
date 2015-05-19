@@ -25,7 +25,7 @@
     function signIn() {
       AuthService.login(vm.login)
         .then(function (r) {
-          $state.go('app.home');
+          AuthService.redirectFromSignin();
         })
         .catch(function (error) {
           // TODO: show error message

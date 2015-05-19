@@ -1,13 +1,19 @@
-<div>
-    Sign in
-    <hr/>
+<navbar></navbar>
+
+<div class="container">
+    <h2>Sign in</h2>
+
     <form method="post" ng-submit="vm.signIn()">
-        <label>Name: <input type="text" name="name" ng-model="vm.login.username" /></label>
-        <label>Password: <input type="password" name="pass" ng-model="vm.login.password" /></label>
-        <button>Sign in</button>
+        <div class="row">
+            <div class="four columns">
+                <input class="u-full-width" type="text" name="name" ng-model="vm.login.username" placeholder="Name">
+            </div>
+            <div class="four columns">
+                <input class="u-full-width" type="password" name="pass" ng-model="vm.login.password" placeholder="Password">
+            </div>
+            <div class="four columns">
+                <button class="button-primary u-full-width">Sign in</button>
+            </div>
+        </div>
     </form>
-    <hr/>
-    <a ui-sref="app.home">Home page</a>
-    <hr/>
-    <a ui-sref="app.articles">Articles</a>
 </div>

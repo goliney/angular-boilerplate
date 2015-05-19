@@ -3,6 +3,7 @@
   "email": "derp@mem.com",
   "permissions": [
     "article.write",
-    "article.delete"
+    "article.delete",
+    "article.read"
   ]
 }
